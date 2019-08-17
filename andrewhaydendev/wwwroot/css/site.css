@@ -7,6 +7,18 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+a{
+    color:tomato;
+}
+
+a:hover, a.nav-link:hover {
+    color: coral!important;
+}
+
+li.nav-item{
+    margin-top:15px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -53,4 +65,33 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
+}
+
+/* Font-Awesome Modifications*/
+.fas, .fab {
+    text-decoration: none;
+    font-size: 2em;
+}
+
+.fas:hover, .fab {
+    text-decoration: none;
+}
+
+.nav-link > .fas{
+    font-size:1em;
+}
+
+
+/* Project Index Styles
+-------------------------------------------------- */
+.ProjectLogo {
+    width: 100px;
+    height: 100px;
+}
+
+/* Project Detail styles
+-------------------------------------------------- */
+.ProjectLogoDetail {
+    width: 180px;
+    height: 180px;
 }

@@ -1,20 +1,25 @@
 ﻿@model IEnumerable<andrewhaydendev.Models.ProjectModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Projects";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Projects</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    Most of these are quick project ideas I had and thought they would be fun to write. 
 </p>
+
 <table class="table">
     <thead>
         <tr>
+            <th>Details</th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RepositoryLink)
@@ -25,34 +30,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.ActiveDevelopment)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="text-center">
+                @Html.ActionLink("", "Details", new { id = item.ID }, new {@class = "fas fa-eye"})
+            </td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RepositoryLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompiledProjectLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActiveDevelopment)
+                <br />
+                <img class="ProjectLogo" src="@Html.ValueFor(modelItem => item.ImageURL)" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            <td class="text-center">
+                <a class="fab fa-github-alt fa-align-center" href="@Html.ValueFor(modelItem => item.RepositoryLink)" target="_blank"></a>
+            </td>
+            <td class="text-center">
+                <a class="fas fa-file-download" href="@Html.ValueFor(modelItem => item.CompiledProjectLink)" target="_blank"></a>
+            </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.ActiveDevelopment)
             </td>
         </tr>
 }
