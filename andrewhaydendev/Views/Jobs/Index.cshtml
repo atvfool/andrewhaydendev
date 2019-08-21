@@ -1,0 +1,58 @@
+﻿@model IEnumerable<andrewhaydendev.Models.JobModel>
+
+@{
+    ViewData["Title"] = "Job History";
+}
+
+<h1>Job History</h1>
+
+<p>
+    The cool places I've worked!
+</p>
+<table class="table">
+    <thead>
+		<tr>
+			<th></th>
+			<th>
+				Company
+			</th>
+			<th>
+				Job Title
+			</th>
+			<th>
+				Description
+			</th>
+			<th>
+				Start
+			</th>
+			<th>
+				End
+			</th>
+		</tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.ActionLink("", "Details", new { id = item.ID }, new { @class = "fas fa-eye" })
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CompanyName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.JobTitle)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Description)
+			</td>
+			<td>
+				@(item.StartDate.ToShortDateString())
+			</td>
+			<td>
+				@(item.EndDate.Year < 1900 ? string.Empty : item.EndDate.ToShortDateString())
+			</td>
+
+		</tr>
+}
+    </tbody>
+</table>

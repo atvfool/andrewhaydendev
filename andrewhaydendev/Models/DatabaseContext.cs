@@ -78,5 +78,74 @@ namespace andrewhaydendev.Models
 
                 return pm;
         }
+
+		public List<JobModel> GetAllJobs()
+		{
+			List<JobModel> Jobs = new List<JobModel>();
+
+			using (MySqlConnection conn = GetConnection())
+			{
+				conn.Open();
+				MySqlCommand cmd = new MySqlCommand("SELECT * FROM jobs", conn);
+
+				using (var reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						DateTime startDate;
+						DateTime.TryParse(reader["StartDate"].ToString(), out startDate);
+
+						DateTime endDate;
+						DateTime.TryParse(reader["EndDate"].ToString(), out endDate);
+							
+
+						Jobs.Add(new JobModel()
+						{
+							ID = Convert.ToInt32(reader["ID"]),
+							CompanyName = reader["CompanyName"].ToString(),
+							StartDate = startDate,
+							EndDate = endDate,
+							Description = reader["Description"].ToString(),
+							JobTitle = reader["JobTitle"].ToString()
+						});
+					}
+				}
+			}
+			
+			return Jobs;
+		}
+
+		public JobModel GetJobByID(int ID)
+		{
+			JobModel jm = new JobModel();
+
+			using (MySqlConnection conn = GetConnection())
+			{
+				conn.Open();
+				MySqlCommand cmd = new MySqlCommand("SELECT * FROM jobs WHERE ID = @JobID", conn);
+				cmd.Parameters.Add(new MySqlParameter() { ParameterName = "JobID", Value = ID });
+
+				using (var reader = cmd.ExecuteReader())
+				{
+					while(reader.Read())
+					{
+						DateTime startDate;
+						DateTime.TryParse(reader["StartDate"].ToString(), out startDate);
+
+						DateTime endDate;
+						DateTime.TryParse(reader["EndDate"].ToString(), out endDate);
+
+						jm.ID = Convert.ToInt32(reader["ID"]);
+						jm.CompanyName = reader["CompanyName"].ToString();
+						jm.StartDate = startDate;
+						jm.EndDate = endDate;
+						jm.Description = reader["Description"].ToString();
+						jm.JobTitle = reader["JobTitle"].ToString();
+					}
+				}
+			}
+
+				return jm;
+		}
     }
 }
