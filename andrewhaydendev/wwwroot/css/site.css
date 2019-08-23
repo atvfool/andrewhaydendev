@@ -95,3 +95,11 @@ body {
     width: 180px;
     height: 180px;
 }
+
+.not-available{
+    color:grey;
+}
+
+.not-available:hover{
+    cursor:not-allowed;
+}

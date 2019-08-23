@@ -14,7 +14,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Details</th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -36,9 +35,6 @@
 @foreach (var item in Model) {
         <tr>
             <td class="text-center">
-                @Html.ActionLink("", "Details", new { id = item.ID }, new {@class = "fas fa-eye"})
-            </td>
-            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Name)
                 <br />
                 <img class="ProjectLogo" src="@Html.ValueFor(modelItem => item.ImageURL)" />
@@ -47,10 +43,28 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td class="text-center">
-                <a class="fab fa-github-alt fa-align-center" href="@Html.ValueFor(modelItem => item.RepositoryLink)" target="_blank"></a>
+                @{
+                    if (item.RepositoryLink.Equals(string.Empty))
+                    {
+                        <span class="fab fa-github-alt not-available"></span>
+                    }
+                    else
+                    {
+                        <a class="fab fa-github-alt fa-align-center" href="@Html.ValueFor(modelItem => item.RepositoryLink)" target="_blank"></a>
+                    }
+                }
             </td>
             <td class="text-center">
-                <a class="fas fa-file-download" href="@Html.ValueFor(modelItem => item.CompiledProjectLink)" target="_blank"></a>
+                @{
+                    if (item.CompiledProjectLink.Equals(string.Empty))
+                    {
+                        <span class="fas fa-file-download not-available"></span>
+                    }
+                    else
+                    {
+                        <a class="fas fa-file-download" href="@Html.ValueFor(modelItem => item.CompiledProjectLink)" target="_blank"></a>
+                    }
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ActiveDevelopment)

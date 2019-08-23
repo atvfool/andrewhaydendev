@@ -86,7 +86,7 @@ namespace andrewhaydendev.Models
 			using (MySqlConnection conn = GetConnection())
 			{
 				conn.Open();
-				MySqlCommand cmd = new MySqlCommand("SELECT * FROM jobs", conn);
+				MySqlCommand cmd = new MySqlCommand("SELECT * FROM jobs ORDER BY StartDate DESC", conn);
 
 				using (var reader = cmd.ExecuteReader())
 				{

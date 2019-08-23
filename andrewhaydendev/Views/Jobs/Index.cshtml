@@ -7,12 +7,11 @@
 <h1>Job History</h1>
 
 <p>
-    The cool places I've worked!
+    The cool places I've worked! I've been fortunate enough to work at a lot of cool places and work on a lot of cool projects.
 </p>
 <table class="table">
     <thead>
 		<tr>
-			<th></th>
 			<th>
 				Company
 			</th>
@@ -34,9 +33,6 @@
 @foreach (var item in Model) {
 		<tr>
 			<td>
-				@Html.ActionLink("", "Details", new { id = item.ID }, new { @class = "fas fa-eye" })
-			</td>
-			<td>
 				@Html.DisplayFor(modelItem => item.CompanyName)
 			</td>
 			<td>
@@ -46,10 +42,10 @@
 				@Html.DisplayFor(modelItem => item.Description)
 			</td>
 			<td>
-				@(item.StartDate.ToShortDateString())
+				@(string.Format("{0:MMM yyyy}",item.StartDate))
 			</td>
 			<td>
-				@(item.EndDate.Year < 1900 ? string.Empty : item.EndDate.ToShortDateString())
+				@(item.EndDate.Year < 1900 ? string.Empty : string.Format("{0:MMM yyyy}", item.EndDate))
 			</td>
 
 		</tr>
