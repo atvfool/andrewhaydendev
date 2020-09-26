@@ -11,11 +11,11 @@ namespace andrewhaydendev.Controllers
     public class ProjectsController : Controller
     {
         // GET: Projects
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            DatabaseContext context = HttpContext.RequestServices.GetService(typeof(DatabaseContext)) as DatabaseContext;
+            RESTContext context = HttpContext.RequestServices.GetService(typeof(RESTContext)) as RESTContext;
 
-            return View(context.GetAllProjects());
+            return View(await context.GetAllProjects());
         }
 
         // GET: Projects/Details/5

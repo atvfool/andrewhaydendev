@@ -56,7 +56,7 @@
             </td>
             <td class="text-center">
                 @{
-                    if (item.CompiledProjectLink.Equals(string.Empty))
+                    if (item.CompiledProjectLink == null || item.CompiledProjectLink.Equals(string.Empty))
                     {
                         <span class="fas fa-file-download not-available"></span>
                     }

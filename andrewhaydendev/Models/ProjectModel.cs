@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace andrewhaydendev.Models
 {
-    public class ProjectModel
+    public class ProjectModel : BaseModel
     {
-        private DatabaseContext context;
+        private RESTContext context;
         public int ID { get; set; }
         public string Name { get; set; }
         public string RepositoryLink { get; set; }
