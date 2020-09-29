@@ -19,7 +19,7 @@ namespace andrewhaydendev.Models
         {
             return new MySqlConnection(ConnectionString);
         }
-        
+        #region Unused but still left here in case i ever decide to change back to a Database only and not use the API
         public List<ProjectModel> GetAllProjects()
         {
             List<ProjectModel> Projects = new List<ProjectModel>();
@@ -78,8 +78,8 @@ namespace andrewhaydendev.Models
 
                 return pm;
         }
-
-		public List<JobModel> GetAllJobs()
+        #endregion
+        public List<JobModel> GetAllJobs()
 		{
 			List<JobModel> Jobs = new List<JobModel>();
 
@@ -100,14 +100,16 @@ namespace andrewhaydendev.Models
 							
 
 						Jobs.Add(new JobModel()
-						{
-							ID = Convert.ToInt32(reader["ID"]),
-							CompanyName = reader["CompanyName"].ToString(),
-							StartDate = startDate,
-							EndDate = endDate,
-							Description = reader["Description"].ToString(),
-							JobTitle = reader["JobTitle"].ToString()
-						});
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            CompanyName = reader["CompanyName"].ToString(),
+                            StartDate = startDate,
+                            EndDate = endDate,
+                            Description = reader["Description"].ToString(),
+                            JobTitle = reader["JobTitle"].ToString(),
+                            Website = reader["Website"].ToString(),
+
+                        });
 					}
 				}
 			}
@@ -141,6 +143,7 @@ namespace andrewhaydendev.Models
 						jm.EndDate = endDate;
 						jm.Description = reader["Description"].ToString();
 						jm.JobTitle = reader["JobTitle"].ToString();
+                        jm.Website = reader["Website"].ToString();
 					}
 				}
 			}

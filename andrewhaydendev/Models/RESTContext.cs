@@ -11,6 +11,12 @@ namespace andrewhaydendev.Models
 {
     public class RESTContext
     {
+        #region Enums
+        public enum JSONDataType
+        {
+            GitHubRepo
+        }
+        #endregion
         public RESTContext()
         {
         }
@@ -19,7 +25,7 @@ namespace andrewhaydendev.Models
         {
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("User-agent", "atvfool-browser");
+                client.DefaultRequestHeaders.Add("User-agent", "arhayden-browser");
                 client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
                 using (var response = await client.GetAsync(apiUrl))
                 {
@@ -35,7 +41,7 @@ namespace andrewhaydendev.Models
 
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("User-agent", "atvfool-browser");
+                client.DefaultRequestHeaders.Add("User-agent", "arhayden-browser");
                 client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
                 StringContent stringContent = new StringContent("");
                 data.ForEach(x => stringContent.Headers.Add(x.Key, x.Value));
@@ -53,108 +59,52 @@ namespace andrewhaydendev.Models
         {
             List<ProjectModel> Projects = new List<ProjectModel>();
 
-            Projects = Utilities.ConvertJSONToProjectModel(await callAPI("https://api.github.com/users/atvfool/repos?type=owner&per_page=100"), Utilities.JSONDataType.GitHubRepo);
+            Projects = ConvertJSONToProjectModel(await callAPI("https://api.github.com/users/atvfool/repos?type=owner&per_page=100&affiliation=owner"), JSONDataType.GitHubRepo);
            
 
             return Projects;
         }
 
-        public ProjectModel GetProjectByID(int ID)
+        #region GitHub Stuff
+
+        private class GitHubRepo
         {
-            ProjectModel pm = new ProjectModel();
-
-            //using (MySqlConnection conn = GetConnection())
-            //{
-            //    conn.Open();
-            //    MySqlCommand cmd = new MySqlCommand("SELECT * FROM projects WHERE ID = @ProjectID", conn);
-            //    cmd.Parameters.Add(new MySqlParameter() { ParameterName = "ProjectID", Value = ID });
-
-            //    using (var reader = cmd.ExecuteReader())
-            //    {
-            //        while (reader.Read())
-            //        {
-            //            pm.ID = Convert.ToInt32(reader["ID"]);
-            //            pm.Name = reader["Name"].ToString();
-            //            pm.RepositoryLink = reader["RepositoryLink"].ToString();
-            //            pm.CompiledProjectLink = reader["CompiledProjectLink"].ToString();
-            //            pm.ActiveDevelopment = Convert.ToBoolean(reader["ActiveDevelopment"]);
-            //            pm.Description = reader["Description"].ToString();
-            //            pm.ImageURL = reader["ImageURL"].ToString().Equals(string.Empty) ? "/static/no-image-available.png" : reader["ImageURL"].ToString();
-            //            break; // This isn't necessary but I'm paranoid
-            //        }
-            //    }
-            //}
-
-            return pm;
+            public int id { get; set; }
+            public string name { get; set; }
+            public string description { get; set; }
+            public string html_url { get; set; }
+            public bool fork { get; set; }
+            public DateTime pushed_at { get; set; }
+            public string homepage { get; set; }
         }
 
-        public List<JobModel> GetAllJobs()
+        public static List<ProjectModel> ConvertJSONToProjectModel(string json, JSONDataType dataType)
         {
-            List<JobModel> Jobs = new List<JobModel>();
+            List<ProjectModel> Projects = new List<ProjectModel>();
+            string searchCharater = "{|}"; // I'd rather not make a whole another API for each object to find the ones I actually want to display so since I have control of the data I will just insert this character into the description of the repo. 
 
-            //using (MySqlConnection conn = GetConnection())
-            //{
-            //    conn.Open();
-            //    MySqlCommand cmd = new MySqlCommand("SELECT * FROM jobs ORDER BY StartDate DESC", conn);
+            switch (dataType)
+            {
+                case JSONDataType.GitHubRepo:
+                    List<GitHubRepo> repos = JsonConvert.DeserializeObject<List<GitHubRepo>>(json);
 
-            //    using (var reader = cmd.ExecuteReader())
-            //    {
-            //        while (reader.Read())
-            //        {
-            //            DateTime startDate;
-            //            DateTime.TryParse(reader["StartDate"].ToString(), out startDate);
+                    repos.Where(x => !x.fork && x.description != null && x.description.Contains(searchCharater)).ToList().ForEach(x => Projects.Add(new ProjectModel
+                    {
+                        ID = x.id,
+                        Name = x.name,
+                        Description = x.description.Replace(searchCharater, ""), // remove that searchCharacter so it looks cleaner. 
+                        RepositoryLink = x.html_url,
+                        ActiveDevelopment = (DateTime.Now - x.pushed_at).Days < 180 ? true : false,
+                        CompiledProjectLink = x.homepage,
+                        ImageURL = "/static/no-image-available.png" // I'll figure something out to display with this projects, or maybe i'll remove the images all together
+                    }));
+                    break;
+            }
 
-            //            DateTime endDate;
-            //            DateTime.TryParse(reader["EndDate"].ToString(), out endDate);
-
-
-            //            Jobs.Add(new JobModel()
-            //            {
-            //                ID = Convert.ToInt32(reader["ID"]),
-            //                CompanyName = reader["CompanyName"].ToString(),
-            //                StartDate = startDate,
-            //                EndDate = endDate,
-            //                Description = reader["Description"].ToString(),
-            //                JobTitle = reader["JobTitle"].ToString()
-            //            });
-            //        }
-            //    }
-            //}
-
-            return Jobs;
+            return Projects;
         }
 
-        public JobModel GetJobByID(int ID)
-        {
-            JobModel jm = new JobModel();
+        #endregion
 
-            //using (MySqlConnection conn = GetConnection())
-            //{
-            //    conn.Open();
-            //    MySqlCommand cmd = new MySqlCommand("SELECT * FROM jobs WHERE ID = @JobID", conn);
-            //    cmd.Parameters.Add(new MySqlParameter() { ParameterName = "JobID", Value = ID });
-
-            //    using (var reader = cmd.ExecuteReader())
-            //    {
-            //        while (reader.Read())
-            //        {
-            //            DateTime startDate;
-            //            DateTime.TryParse(reader["StartDate"].ToString(), out startDate);
-
-            //            DateTime endDate;
-            //            DateTime.TryParse(reader["EndDate"].ToString(), out endDate);
-
-            //            jm.ID = Convert.ToInt32(reader["ID"]);
-            //            jm.CompanyName = reader["CompanyName"].ToString();
-            //            jm.StartDate = startDate;
-            //            jm.EndDate = endDate;
-            //            jm.Description = reader["Description"].ToString();
-            //            jm.JobTitle = reader["JobTitle"].ToString();
-            //        }
-            //    }
-            //}
-
-            return jm;
-        }
     }
 }
