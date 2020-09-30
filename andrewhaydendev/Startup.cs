@@ -39,7 +39,7 @@ namespace andrewhaydendev
             services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
             services.AddRazorPages();
             services.Add(new ServiceDescriptor(typeof(DatabaseContext), new DatabaseContext(Configuration.GetSection("DefaultConnection").Value)));
-            services.Add(new ServiceDescriptor(typeof(RESTContext), new RESTContext()));
+            services.Add(new ServiceDescriptor(typeof(RESTContext), new RESTContext(Configuration.GetSection("GitHubAPIToken").Value)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

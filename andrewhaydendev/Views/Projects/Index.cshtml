@@ -4,72 +4,66 @@
     ViewData["Title"] = "Projects";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h1>Projects</h1>
 
 <p>
-    Most of these are quick project ideas I had and thought they would be fun to write. 
+    Most of these are quick project ideas I had and thought they would be fun to write.
 </p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RepositoryLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompiledProjectLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveDevelopment)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.Name)
-                <br />
-                <img class="ProjectLogo" src="@Html.ValueFor(modelItem => item.ImageURL)" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td class="text-center">
-                @{
-                    if (item.RepositoryLink.Equals(string.Empty))
-                    {
-                        <span class="fab fa-github-alt not-available"></span>
-                    }
-                    else
-                    {
-                        <a class="fab fa-github-alt fa-align-center" href="@Html.ValueFor(modelItem => item.RepositoryLink)" target="_blank"></a>
-                    }
-                }
-            </td>
-            <td class="text-center">
-                @{
-                    if (item.CompiledProjectLink == null || item.CompiledProjectLink.Equals(string.Empty))
-                    {
-                        <span class="fas fa-file-download not-available"></span>
-                    }
-                    else
-                    {
-                        <a class="fas fa-file-download" href="@Html.ValueFor(modelItem => item.CompiledProjectLink)" target="_blank"></a>
-                    }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActiveDevelopment, "Checkbox")
-            </td>
-        </tr>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RepositoryLink)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompiledProjectLink)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveDevelopment)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td class="text-center">
+        @Html.DisplayFor(modelItem => item.Name)
+        <br />
+        <img class="ProjectLogo" src="@Html.ValueFor(modelItem => item.ImageURL)" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td class="text-center">
+        @{ if (item.RepositoryLink.Equals(string.Empty))
+            {
+<span class="fab fa-github-alt not-available"></span> }
+else
+{
+<a class="fab fa-github-alt fa-align-center" href="@Html.ValueFor(modelItem => item.RepositoryLink)" target="_blank"></a> } }
+    </td>
+    <td class="text-center">
+        @{ if (item.CompiledProjectLink == null || item.CompiledProjectLink.Equals(string.Empty))
+            {
+<span class="fas fa-file-download not-available"></span> }
+else
+{
+<a class="fas fa-file-download" href="@Html.ValueFor(modelItem => item.CompiledProjectLink)" target="_blank"></a> } }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ActiveDevelopment, "Checkbox")
+    </td>
+</tr>
 }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+</div>    
