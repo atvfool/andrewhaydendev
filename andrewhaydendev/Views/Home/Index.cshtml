@@ -1,20 +1,303 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@{ ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<!-- ======= About Section ======= -->
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
 
-<div class="text-center">
-    <div class="card">
-        <div class="card-header">
-            <h1 class="display-4">Welcome to my Developer page!</h1>
+        <div class="section-title">
+            <h2>About</h2>
+            <p>I'm a passionate tech nerd to the core as well an avid gamer and musician. I enjoy a good board game with my friends and love to watch a good movie or t.v. show</p>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <img class="rounded card-img-top" style="width:100%;" src="~/static/me.jpg" />
+
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-8 pt-4 pt-lg-0 content">
+                <h3>Full Stack Web Developer</h3>
+                <p class="font-italic">
+                    My strengths are backend and relational database design.
+                </p>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul>
+                            <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> May 27 1991</li>
+                            <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> @ViewData["website"]</li>
+                            <li><i class="icofont-rounded-right"></i> <strong>City:</strong> Cincinnati : Ohio, USA</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul>
+                            <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> @((int)((DateTime.Now - DateTime.Parse("05/27/1991")).Days / 365.25))</li>
+                            <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> <a href="mailto:@ViewData["email"]">@ViewData["email"]</a></li>
+                            <li><i class="icofont-rounded-right"></i> <strong>Freelance:</strong> Available</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>
+                    I am available for freelance or consulting on off hours
+                </p>
             </div>
         </div>
-        <div class="card-body">
-            <p>I created this web app to be something of an interactive résumé. This web app is written in .NETCore 3.1 using the razor syntax. The Job History page uses a Database for the data while the Projects page uses GitHub's REST API. The source code for this web app can be found <a href="https://github.com/atvfool/andrewhaydendev" target="_blank">here</a>. This web app isn't intended to show the extent of my knowledge but to reinforce my résumé. Not only did I write this web app but I also set up the web server and database server.</p>
-        </div>
+
     </div>
-    
-</div>
+</section><!-- End About Section -->
+<!-- ======= Facts Section ======= -->
+<section id="facts" class="facts">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Facts</h2>
+            <p>Over my decade of programming I've been fortunate enough to work with a lot of different types of clients from government agencies and financial institutions to technology firms and manufacturers. The team sizes I have worked on have ranged from less than 10 people in the whole company to multinational corporations.</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="count-box">
+                    <i class="icofont-database"></i>
+                    <span data-toggle="counter-up">500</span>
+                    <p>More Than Databases Maintained</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                <div class="count-box">
+                    <i class="icofont-document-folder"></i>
+                    <span data-toggle="counter-up">70</span>
+                    <p>Projects</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                <div class="count-box">
+                    <i class="icofont-code-alt"></i>
+                    <span data-toggle="counter-up">18,192</span>
+                    <p>Hours Of Code</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                <div class="count-box">
+                    <i class="icofont-computer"></i>
+                    <span data-toggle="counter-up">10</span>
+                    <p>Computers</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Facts Section -->
+<!-- ======= Skills Section ======= -->
+<section id="skills" class="skills section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Skills</h2>
+            <p>
+                One of my college professors told me once “This is an ever changing field, you should set a goal to get a book on a new language or technology as often as you can”. I’m also a big advocate for using the right tool for the job. These 2 reasons are why I never stop experimenting with new technologies. Here are how some of my skills I use day to day rank.
+            </p>
+        </div>
+
+        <div class="row skills-content">
+
+            <div class="col-lg-6">
+
+                <div class="progress">
+                    <span class="skill">C# <i class="val">95%</i></span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">T-SQL <i class="val">80%</i></span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">JavaScript <i class="val">75%</i></span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="progress">
+                    <span class="skill">Reporting <i class="val">80%</i></span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">WordPress/CMS <i class="val">90%</i></span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">git <i class="val">85%</i></span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Skills Section -->
+<!-- ======= Resume Section ======= -->
+<section id="resume" class="resume">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Resume</h2>
+            <p></p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="resume-title">Sumary</h3>
+                <div class="resume-item pb-0">
+                    <h4>@ViewData["name"]</h4>
+                    <p><em>Passionate and dedicated Full Stack Developer with 9+ years of experience designing and developing very cool products to make the world a better place! From building the server the product runs on to delivering the final software.</em></p>
+                    <ul>
+                        <li>Cincinnati, OH</li>
+                        <li>@ViewData["phone"]</li>
+                        <li><a href="mailto:@ViewData["email"]">@ViewData["email"]</a></li>
+                    </ul>
+                </div>
+
+                <h3 class="resume-title">Education</h3>
+                <div class="resume-item">
+                    <h4>Software Engineering Technology</h4>
+                    <h5>2009 - 2014</h5>
+                    <p><em>Cincinnati State, Cincinnati, OH</em></p>
+                    <p>Completed 60 credits towards an Associate of Applied Science </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="resume-title">Professional Experience</h3>
+                <div class="resume-item">
+                    <h4>Software Developer II</h4>
+                    <h5>2018 - Present</h5>
+                    <p><em>Shoptech, Sharonville, OH </em></p>
+                    <ul>
+                        <li>Gathered requirements from customers and created custom utilities and reports in the C# MVC product.</li>
+                        <li>Interpreted VB6 code to upgrade customer's custom utilities and report to the new product written in a C# MVC environment.</li>
+                        <li>Create, improve, and maintain several departmental tools that save hours while creating and maintaining projects.</li>
+                        <li>Tasked with interviewing and training new employees on the processes we followed and project architecture.</li>
+                        <li>Responsible for updating our custom server framework used for delivering custom portions of the applications to our clients.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <h4>Senior Application Developer</h4>
+                    <h5>2017 - 2018</h5>
+                    <p><em>Fifth Third Bank, Cincinnati, OH</em></p>
+                    <ul>
+                        <li>Analyzed and developed new processes and improved upon old processes for the call center’s in house reporting and analytics application that utilized SSIS, SSRS, and was written in VB.Net and a Microsoft SQL backend.</li>
+                        <li>Lead the charge on switching our department's version control to git.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <h4>Software Engineer</h4>
+                    <h5>2014 - 2017</h5>
+                    <p><em>M. Bohlke Veneer Corp., Fairfield, OH</em></p>
+                    <ul>
+                        <li>Updated a variety of in-house applications from VB6 and VB.Net to ASP.NET.</li>
+                        <li>Analyzed and developed new applications for customer relations and sales processes.</li>
+                        <li>Developed a billing importer to import via American Express and US Bank and import into SAP.</li>
+                        <li>Maintained, updated, and customized the front facing WordPress site.</li>
+                        <li>Performed front end support and server maintenance.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <h4>Software Developer</h4>
+                    <h5>2011 - 2014</h5>
+                    <p><em>Tracker Products, Erlanger, KY</em></p>
+                    <ul>
+                        <li>Web, desktop, and database developer (VB.Net, Classic ASP, ASP.NET, T-SQL) using Team Foundation server to organize and manage the codebase.</li>
+                        <li>Administered AWS instances using S3, EC2, and Route53.</li>
+                        <li>Built a custom report engine that had assignable custom fields to handle many different clients needs.</li>
+                        <li>Built and maintained web services that allowed clients to interface with data transfer.</li>
+                        <li>Provided phone and email technical support.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section><!-- End Resume Section -->
+
+<!-- ======= Services Section ======= -->
+<section id="projects" class="projects">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Projects</h2>
+            <p>Below are some of the personal projects I work on. Most don't have any real world value but I do like to tinker with them to work on new skills.</p>
+        </div>
+        <div id="loading" class="loading text-center">LOADING</div>
+        <div class="row ProjectsHere">
+
+        </div>
+
+    </div>
+</section><!-- End Services Section -->
+
+@section Scripts{
+    <script type="text/javascript">
+        var page = 0,
+            inCallback = false,
+            isReachedScrollEnd = false;
+
+        var url = "@Url.Action("GetProjects", "Home")";
+
+        $(document).ready(loadProjectData(url));
+
+        var scrollHandler = function () {
+            if (isReachedScrollEnd == false &&
+                ($(document).scrollTop() <= $(document).height() - $(window).height())) {
+                loadProjectData(url);
+            }
+        }
+
+        function loadProjectData(loadMoreRowsUrl) {
+            if (page > -1 && !inCallback) {
+                inCallback = true;
+                page++;
+                $("div#loading").show();
+
+                $.ajax({
+                    type: 'GET',
+                    url: loadMoreRowsUrl,
+                    data: "pageNum=" + page,
+                    success: function (data, textstatus) {
+                        if (data != '') {
+                            $(".ProjectsHere").append(data);
+                        }
+                        else {
+                            page = -1;
+                        }
+
+                        inCallback = false;
+                        $("div#loading").hide();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+        } 
+    </script>
+}
