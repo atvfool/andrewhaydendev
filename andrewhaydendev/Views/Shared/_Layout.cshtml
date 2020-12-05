@@ -55,26 +55,13 @@
             </nav><!-- .nav-menu -->
 
         </header><!-- End Header -->
-        <!-- ======= Hero Section ======= -->
-        <section id="hero" class="d-flex flex-column justify-content-center">
-            <div class="container" data-aos="zoom-in" data-aos-delay="100">
-                <h1>@ViewData["name"]</h1>
-                <p>I'm <span class="typed" data-typed-items=" a Developer, a Freelancer, a Nerd, a Gamer, Passionate"></span></p>
-                <div class="social-links">
-                    <a href="https://github.com/atvfool" class="github"><i class="bx bxl-github"></i></a>
-                    <a href="https://www.linkedin.com/in/andrew-robert-hayden/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                    <a href="mailto:@ViewData["email"]" class="mail"><i class="bx bx-mail-send"></i></a>
-                </div>
-            </div>
-        </section><!-- End Hero -->
+        
+        @RenderBody()
 
-        <main id="main">
-            @RenderBody()
-        </main>
         <!-- ======= Footer ======= -->
         <footer id="footer">
             <div class="container">
-                <h3>Andrew Hayden</h3>
+                <h3>@ViewData["name"]</h3>
                 <p><em>&quot;Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.&quot;</em> - Linus Torvalds</p>
                 <div class="social-links">
                     <a href="https://github.com/atvfool" class="github"><i class="bx bxl-github"></i></a>

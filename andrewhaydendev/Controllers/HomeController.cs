@@ -12,7 +12,11 @@ namespace andrewhaydendev.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            DatabaseContext context = HttpContext.RequestServices.GetService(typeof(DatabaseContext)) as DatabaseContext;
+
+            MainModel model = context.GetMain();
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
