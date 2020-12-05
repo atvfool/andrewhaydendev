@@ -12,12 +12,11 @@ namespace andrewhaydendev.Controllers
     {
         public IActionResult Index()
         {
-            return View();
-        }
+            DatabaseContext context = HttpContext.RequestServices.GetService(typeof(DatabaseContext)) as DatabaseContext;
 
-        public IActionResult Privacy()
-        {
-            return View();
+            MainModel model = context.GetMain();
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -26,9 +25,11 @@ namespace andrewhaydendev.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Resume()
+        public async Task<ActionResult> GetProjects()
         {
-            return View();
+            RESTContext context = HttpContext.RequestServices.GetService(typeof(RESTContext)) as RESTContext;
+
+            return PartialView("_PartialProject", await context.GetAllProjects());
         }
     }
 }
