@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-//using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using andrewhaydendev.Models;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using andrewhaydendev.Services;
+using Microsoft.EntityFrameworkCore;
+using MySql.EntityFrameworkCore;
 
 namespace andrewhaydendev
 {
@@ -38,8 +40,10 @@ namespace andrewhaydendev
 
             services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
             services.AddRazorPages();
-            services.Add(new ServiceDescriptor(typeof(DatabaseContext), new DatabaseContext(Configuration.GetSection("DefaultConnection").Value)));
             services.Add(new ServiceDescriptor(typeof(RESTContext), new RESTContext(Configuration.GetSection("GitHubAPIToken").Value)));
+            services.AddDbContext<DataContext.AppContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            
+            services.AddScoped<IDapper, Dapperr>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
