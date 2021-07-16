@@ -38,7 +38,7 @@ namespace andrewhaydendev
 
             services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
             services.AddRazorPages();
-            services.Add(new ServiceDescriptor(typeof(DatabaseContext), new DatabaseContext(Configuration.GetSection("DefaultConnection").Value)));
+            services.Add(new ServiceDescriptor(typeof(DatabaseContext), new DatabaseContext(Configuration.GetConnectionString("DefaultConnection"))));
             services.Add(new ServiceDescriptor(typeof(RESTContext), new RESTContext(Configuration.GetSection("GitHubAPIToken").Value)));
         }
 
