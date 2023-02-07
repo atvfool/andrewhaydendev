@@ -13,6 +13,7 @@ namespace andrewhaydendev.Models
         public string Phone { get; set; }
         public string GitHubLink { get; set; }
         public string LinkedInLink { get; set; }
+        public string ResumeLink { get; set; }
         public string AboutBlurb { get; set; }
         public string AboutTitle { get; set; }
         public DateTime Birthday{ get; set; }
