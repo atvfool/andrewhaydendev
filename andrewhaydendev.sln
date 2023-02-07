@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29209.62
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "andrewhaydendev", "andrewhaydendev\andrewhaydendev.csproj", "{32BCE4F4-1F13-479B-BB3B-5C81FC71E798}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "andrewhaydendevDB", "andrewhaydendevDB\andrewhaydendevDB.sqlproj", "{C7E178B5-18F3-40ED-B020-175AE2A48141}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{32BCE4F4-1F13-479B-BB3B-5C81FC71E798}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32BCE4F4-1F13-479B-BB3B-5C81FC71E798}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32BCE4F4-1F13-479B-BB3B-5C81FC71E798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7E178B5-18F3-40ED-B020-175AE2A48141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7E178B5-18F3-40ED-B020-175AE2A48141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7E178B5-18F3-40ED-B020-175AE2A48141}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C7E178B5-18F3-40ED-B020-175AE2A48141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7E178B5-18F3-40ED-B020-175AE2A48141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7E178B5-18F3-40ED-B020-175AE2A48141}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

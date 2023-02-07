@@ -173,6 +173,7 @@ namespace andrewhaydendev.Models
                         model.Phone = reader["Phone"].ToString();
                         model.GitHubLink = reader["GitHubLink"].ToString();
                         model.LinkedInLink = reader["LinkedInLink"].ToString();
+                        model.ResumeLink = reader["ResumeLink"].ToString();
                         model.AboutBlurb = reader["AboutBlurb"].ToString();
                         model.AboutTitle = reader["AboutTitle"].ToString();
                         model.Birthday = reader["Birthday"].ToString().ToDateTime();
