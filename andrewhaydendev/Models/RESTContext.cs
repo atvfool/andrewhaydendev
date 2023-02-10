@@ -34,7 +34,9 @@ namespace andrewhaydendev.Models
                 client.DefaultRequestHeaders.Add("Authorization", "token " + GitHubAPIToken);
                 using (var response = await client.GetAsync(apiUrl))
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    string apiResponse = string.Empty;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        apiResponse = await response.Content.ReadAsStringAsync();
                     return apiResponse;
                 }
 
@@ -64,9 +66,9 @@ namespace andrewhaydendev.Models
         public async Task<List<ProjectModel>> GetAllProjects()
         {
             List<ProjectModel> Projects = new List<ProjectModel>();
-
-            Projects = ConvertJSONToProjectModel(await callAPI("https://api.github.com/users/atvfool/repos?type=owner&per_page=100&affiliation=owner"), JSONDataType.GitHubRepo);
-
+            string apiResponse = await callAPI("https://api.github.com/users/atvfool/repos?type=owner&per_page=100&affiliation=owner");
+            if(apiResponse != string.Empty)
+                Projects = ConvertJSONToProjectModel(apiResponse, JSONDataType.GitHubRepo);
 
             return Projects;
         }
