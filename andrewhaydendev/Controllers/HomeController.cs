@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using andrewhaydendev.Models;
+using andrewhaydendev.Classes;
 
 namespace andrewhaydendev.Controllers
 {
@@ -30,6 +31,12 @@ namespace andrewhaydendev.Controllers
             RESTContext context = HttpContext.RequestServices.GetService(typeof(RESTContext)) as RESTContext;
 
             return PartialView("_PartialProject", await context.GetAllProjects());
+        }
+
+        public IActionResult GeneratePDF()
+        {
+            PDFGenerator.Generator();
+            return View();
         }
     }
 }
